@@ -21,21 +21,22 @@ local selector(type, params=[]) = {
     params=[]
   ):: selector(type, params),
 
-  field(
-    field='value'
-  ):: selector('field', [ field ]),
+  selection(
+    field='value',
+    selectors=[]
+  ):: [selector('field', [ field ])] + selectors,
 
   /**
    * Return an InfluxDB Target
    *
-   * @param alias Alias By pattern
+   * @param alias 'Alias By' pattern
    * @param datasource Datasource
    *
    * @param query Raw InfluxQL statement
    * @param rawQuery En/Disable raw query mode
    *
-   * @param from_policy Tagged query policy
-   * @param from_measurement Tagged query select source
+   * @param policy Tagged query 'From' policy
+   * @param measurement Tagged query 'From' measurement
    *
    * @param resultFormat Format results as 'Time series' or 'Table'
    *
@@ -51,7 +52,7 @@ local selector(type, params=[]) = {
     policy='default',
     measurement=null,
     where=[],
-    select=[],
+    selections=[],
     group_time='$__interval',
     group_tags=[],
     fill='none',
@@ -67,7 +68,7 @@ local selector(type, params=[]) = {
     policy: policy,
     [if measurement != null then 'measurement']: measurement,
     tags: where,
-    select: select,
+    selections: selections,
     groupBy: [selector("time", [group_time])] + 
       [selector("tag", [tag_name]) for tag_name in group_tags] +
       [selector("fill", [fill])],
