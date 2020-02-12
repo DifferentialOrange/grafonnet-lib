@@ -61,6 +61,7 @@
     format='short',
     formatY1=null,
     formatY2=null,
+    y_axis_decimals=null,
     min=null,
     max=null,
     labelY1=null,
@@ -119,8 +120,8 @@
     [if height != null then 'height']: height,
     renderer: 'flot',
     yaxes: [
-      self.yaxe(if formatY1 != null then formatY1 else format, min, max, decimals=decimals, logBase=logBase1Y, label=labelY1),
-      self.yaxe(if formatY2 != null then formatY2 else format, min, max, decimals=decimals, logBase=logBase2Y, label=labelY2),
+      self.yaxe(if formatY1 != null then formatY1 else format, min, max, decimals=if y_axis_decimals != null then y_axis_decimals else decimals, logBase=logBase1Y, label=labelY1),
+      self.yaxe(if formatY2 != null then formatY2 else format, min, max, decimals=if y_axis_decimals != null then y_axis_decimals else decimals, logBase=logBase2Y, label=labelY2),
     ],
     xaxis: {
       show: show_xaxis,
