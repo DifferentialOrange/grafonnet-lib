@@ -99,13 +99,11 @@ local object(type, params=[]) = {
     policy: policy,
     [if measurement != null then 'measurement']: measurement,
     tags: where,
-    selections: selections,
+    select: selections,
     groupBy: [object("time", [group_time])] + 
       [object("tag", [tag_name]) for tag_name in group_tags] +
       [object("fill", [fill])],
 
     resultFormat: resultFormat,
   },
-
-
 }
