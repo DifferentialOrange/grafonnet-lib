@@ -49,7 +49,7 @@ local object(type, params=[]) = {
    */
   selection(
     field='value',
-    converters=[]
+    converters=[object('mean')]
   ):: [object('field', [field])] + converters,
 
   /**

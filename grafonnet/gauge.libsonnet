@@ -29,7 +29,7 @@
           max: max,
           min: min,
           [if thresholds != null then 'thresholds']: thresholds,
-          [if gauge_title != null then 'title']: gaugeTitle,
+          [if gauge_title != null then 'title']: gauge_title,
           unit: unit
         },
         values: values
