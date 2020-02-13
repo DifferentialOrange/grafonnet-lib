@@ -1,32 +1,20 @@
 {
   new(
-    title='Dashboard Row',
-    height=null,
-    collapse=false,
-    repeat=null,
-    showTitle=null,
-    titleSize='h6'
+    title='Row',
+    #collapsed=false,
+    datasource=null
+    # repeat=null,
   ):: {
-    collapse: collapse,
-    collapsed: collapse,
-    [if height != null then 'height']: height,
+    collapsed: false,
     panels: [],
-    repeat: repeat,
-    repeatIteration: null,
-    repeatRowId: null,
-    showTitle:
-      if showTitle != null then
-        showTitle
-      else
-        title != 'Dashboard Row',
+    datasource: datasource,
     title: title,
     type: 'row',
-    titleSize: titleSize,
-    addPanels(panels):: self {
-      panels+: panels,
-    },
-    addPanel(panel, gridPos={}):: self {
-      panels+: [panel { gridPos: gridPos }],
-    },
+    # addPanels(panels):: self {
+    #   panels+: panels,
+    # },
+    # addPanel(panel, gridPos={}):: self {
+    #   panels+: [panel { gridPos: gridPos }],
+    # },
   },
 }
