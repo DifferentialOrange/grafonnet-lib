@@ -104,6 +104,7 @@
     transparent=false,
     value_type='individual',
     shared_tooltip=true,
+    staircase=false,
     percentage=false,
     time_from=null,
     time_shift=null,
@@ -159,7 +160,6 @@
       [if legend_sortDesc != null then 'sortDesc']: legend_sortDesc,
     },
     nullPointMode: nullPointMode,
-    steppedLine: false,
     tooltip: {
       value_type: value_type,
       shared: shared_tooltip,
@@ -172,6 +172,7 @@
     repeat: repeat,
     [if repeatDirection != null then 'repeatDirection']: repeatDirection,
     seriesOverrides: [],
+    steppedLine: staircase,
     thresholds: thresholds,
     links: [],
     yaxe(
