@@ -30,6 +30,8 @@
     sort=null,
     time_from=null,
     time_shift=null,
+    crit=null,
+    warn=null
   ):: {
     type: 'table',
     title: title,
@@ -49,7 +51,7 @@
     [if transparent == true then 'transparent']: transparent,
 
     _nextTarget:: 0,
-    addTarget(target):: self + self.addTargets([target]),
+    addTarget(target):: self + self.addTargets([target + { crit: crit, warn: warn }]),
     addTargets(newtargets)::
       self {
         local n = std.foldl(function(numOfTargets, p)
