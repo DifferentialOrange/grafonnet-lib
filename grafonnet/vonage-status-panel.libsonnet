@@ -1,0 +1,52 @@
+{
+  new(
+    title,
+    datasource=null,
+    description='',
+    transparent=null,
+    colors=null,
+    crit,
+    warn,
+    clusterName=null,
+    colorMode='Panel',
+    displayName=null,
+    displayType='Regular',
+    flipCard=false,
+    flipTime=5,
+    decimals=2,
+    units='none',
+    valueHandler='Number Threshold',
+    isGrayOnNoData=false,
+    isHideAlertsOnDisable=false,
+    isIgnoreOKColors=false
+  ):: {
+    [if description != '' then 'description']: description,
+    [if transparent != null then 'transparent']: transparent,
+    title: title,
+    type: 'vonage-status-panel',
+    datasource: datasource,
+    colors: colors,
+    [if clusterName != null then 'clusterName']: clusterName,
+    colorMode: colorMode,
+    [if displayName != null then 'displayName']: displayName,
+    flipCard: flipCard,
+    flipTime: flipTime,
+    isGrayOnNoData: isGrayOnNoData,
+    isIgnoreOKColors: isIgnoreOKColors,
+    isHideAlertsOnDisable: isHideAlertsOnDisable,
+    _nextTarget:: 0,
+    addTarget(target):: self {
+      local nextTarget = super._nextTarget,
+      _nextTarget: nextTarget + 1,
+      targets+: [target + {
+        refId: std.char(std.codepoint('A') + nextTarget),
+        crit: crit,
+        warn: warn,
+        decimals: decimals,
+        displayType: displayType,
+        units: units,
+        valueHandler: valueHandler
+      }],
+    },
+  }
+}
