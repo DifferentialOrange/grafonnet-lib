@@ -11,7 +11,9 @@
     thresholds=null,
     gauge_title=null,
     unit='percent',
-    values=false
+    values=false,
+    labels=false,
+    markers=true,
   ):: {
     [if description != '' then 'description']: description,
     [if height != null then 'height']: height,
@@ -32,7 +34,9 @@
           [if gauge_title != null then 'title']: gauge_title,
           unit: unit
         },
-        values: values
+        values: values,
+        showThresholdLabels: labels,
+        showThresholdMarkers: markers,
       },
     },
     _nextTarget:: 0,
