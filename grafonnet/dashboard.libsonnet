@@ -79,12 +79,6 @@ local timepickerlib = import 'timepicker.libsonnet';
             );
             newpanels[i] + {
               id: id,
-              gridPos : {
-                x : newpanels[i].gridPos.x,
-                y : if 'y' in newpanels[i].gridPos then newpanels[i].gridPos.y else id,
-                h : newpanels[i].gridPos.h,
-                w : newpanels[i].gridPos.w,
-              },
               [if 'panels' in newpanels[i] then 'panels']: std.makeArray(
                 std.length(newpanels[i].panels), function(j)
                 local sub_id = nextPanel + (
@@ -98,12 +92,6 @@ local timepickerlib = import 'timepicker.libsonnet';
                 );
                 newpanels[i].panels[j] + {
                   id: sub_id,
-                  gridPos : {
-                    x : newpanels[i].panels[j].gridPos.x,
-                    y : if 'y' in newpanels[i].panels[j].gridPos then newpanels[i].panels[j].gridPos.y else sub_id,
-                    h : newpanels[i].panels[j].gridPos.h,
-                    w : newpanels[i].panels[j].gridPos.w,
-                  }
                 }
               ),
             }
