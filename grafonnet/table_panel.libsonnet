@@ -22,6 +22,7 @@
     span=null,
     min_span=null,
     height=null,
+    width=null,
     datasource=null,
     styles=[],
     transform=null,
@@ -35,6 +36,10 @@
     title: title,
     [if span != null then 'span']: span,
     [if min_span != null then 'minSpan']: min_span,
+    gridPos: {
+      w: width,
+      h: height,
+    },
     [if height != null then 'height']: height,
     datasource: datasource,
     targets: [

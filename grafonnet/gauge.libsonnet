@@ -5,6 +5,7 @@
     calc='mean',
     description='',
     height=null,
+    width=null,
     transparent=null,
     max=100,
     min=0,
@@ -18,7 +19,10 @@
     threshold_mode='absolute'
   ):: {
     [if description != '' then 'description']: description,
-    [if height != null then 'height']: height,
+    gridPos: {
+      h: height,
+      w: width
+    },
     [if transparent != null then 'transparent']: transparent,
     title: title,
     type: 'gauge',

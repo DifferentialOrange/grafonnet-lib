@@ -77,6 +77,7 @@
     pointradius=5,
     bars=false,
     height=null,
+    width=null,
     nullPointMode='null',
     dashes=false,
     stack=false,
@@ -118,7 +119,10 @@
     targets: [
     ],
     [if description != null then 'description']: description,
-    [if height != null then 'height']: height,
+    gridPos: {
+      h: height,
+      w: width,
+    },
     renderer: 'flot',
     yaxes: [
       self.yaxe(if formatY1 != null then formatY1 else format, min, max, decimals=if y_axis_decimals != null then y_axis_decimals else decimals, logBase=logBase1Y, label=labelY1),

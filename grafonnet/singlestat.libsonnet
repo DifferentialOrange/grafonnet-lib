@@ -5,6 +5,7 @@
     description='',
     interval=null,
     height=null,
+    width=null,
     datasource=null,
     span=null,
     min_span=null,
@@ -56,7 +57,6 @@
     maxPerRow=null,
   )::
     {
-      [if height != null then 'height']: height,
       [if description != '' then 'description']: description,
       [if repeat != null then 'repeat']: repeat,
       [if repeatDirection != null then 'repeatDirection']: repeatDirection,
@@ -66,6 +66,10 @@
       [if span != null then 'span']: span,
       type: 'singlestat',
       datasource: datasource,
+      gridPos: {
+        h: height,
+        w: width,
+      },
       targets: [
       ],
       links: links,

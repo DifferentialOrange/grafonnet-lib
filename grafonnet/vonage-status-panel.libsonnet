@@ -4,6 +4,8 @@
     datasource=null,
     description='',
     transparent=null,
+    height=null,
+    width=null,
     colors=null,
     crit=null,
     warn=null,
@@ -47,6 +49,10 @@
         units: units,
         valueHandler: valueHandler
       }],
+    },
+    gridPos: {
+        h: height,
+        w: width,
     },
   }
 }
