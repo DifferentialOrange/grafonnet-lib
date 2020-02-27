@@ -1,4 +1,5 @@
 {
+  local it = self,
   /**
    * Return an InfluxDB query tag condition
    *
@@ -30,18 +31,13 @@
    * @return Query selected value converter
    */
 
-  local _converter(
+  converter(
     type,
     params=[]
-  ) = {
+  ):: {
     type: type,
     params: params
   },
-
-  converter(
-    type,
-    params
-  ):: _converter(type, params),
 
   /**
    * Return an InfluxDB selection (part of 'Select' statement)
@@ -51,15 +47,10 @@
    *
    * @return Query selection
    */
-  local _selection(
-    field='value',
-    converters=[_converter('mean')]
-  ) = [_converter('field', [field])] + converters,
-
   selection(
-    field,
-    converters,
-  ):: _selection(field, converters),
+    field='value',
+    converters=[it.converter('mean')],
+  ):: [it.converter('field', [field])] + converters,
 
   /**
    * Return an InfluxDB Target
@@ -92,7 +83,7 @@
     policy='default',
     measurement=null,
     where=[],
-    selections=[_selection()],
+    selections=[it.selection()],
     group_time='$__interval',
     group_tags=[],
     fill='none',
@@ -109,9 +100,9 @@
     [if measurement != null then 'measurement']: measurement,
     tags: where,
     select: selections,
-    groupBy: [_converter("time", [group_time])] + 
-      [_converter("tag", [tag_name]) for tag_name in group_tags] +
-      [_converter("fill", [fill])],
+    groupBy: [it.converter("time", [group_time])] + 
+      [it.converter("tag", [tag_name]) for tag_name in group_tags] +
+      [it.converter("fill", [fill])],
 
     resultFormat: resultFormat,
   },
