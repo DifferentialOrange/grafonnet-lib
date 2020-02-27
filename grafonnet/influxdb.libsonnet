@@ -1,8 +1,3 @@
-local object(type, params=[]) = {
-  type: type,
-  params: params
-};
-
 {
   /**
    * Return an InfluxDB query tag condition
@@ -34,10 +29,19 @@ local object(type, params=[]) = {
    *
    * @return Query selected value converter
    */
-  converter(
+
+  local _converter(
     type,
     params=[]
-  ):: object(type, params),
+  ) = {
+    type: type,
+    params: params
+  },
+
+  converter(
+    type,
+    params
+  ):: _converter(type, params),
 
   /**
    * Return an InfluxDB selection (part of 'Select' statement)
@@ -47,10 +51,15 @@ local object(type, params=[]) = {
    *
    * @return Query selection
    */
-  selection(
+  local _selection(
     field='value',
-    converters=[object('mean')]
-  ):: [object('field', [field])] + converters,
+    converters=[_converter('mean')]
+  ) = [_converter('field', [field])] + converters,
+
+  selection(
+    field,
+    converters,
+  ):: _selection(field, converters),
 
   /**
    * Return an InfluxDB Target
@@ -64,7 +73,7 @@ local object(type, params=[]) = {
    * @param policy Tagged query 'From' policy
    * @param measurement Tagged query 'From' measurement
    * @param where List of 'Where' query tag conditions
-   * @param selections List of 'Select' field selections with their selectors (aggregation etc.)
+   * @param selections List of 'Select' field selections with their converters (aggregation etc.)
    * @param group_time 'Group by' time condition
    * @param group_tags 'Group by' tags list
    * @param fill 'Group by' missing values fill mode
@@ -78,12 +87,12 @@ local object(type, params=[]) = {
     datasource=null,
 
     query=null,
-    rawQuery=false,
+    rawQuery=null,
 
     policy='default',
     measurement=null,
     where=[],
-    selections=[],
+    selections=[_selection()],
     group_time='$__interval',
     group_tags=[],
     fill='none',
@@ -94,15 +103,15 @@ local object(type, params=[]) = {
     [if datasource != null then 'datasource']: datasource,
 
     [if query != null then 'query']: query,
-    rawQuery: rawQuery,
+    [if rawQuery != null then 'rawQuery']: rawQuery,
 
     policy: policy,
     [if measurement != null then 'measurement']: measurement,
     tags: where,
     select: selections,
-    groupBy: [object("time", [group_time])] + 
-      [object("tag", [tag_name]) for tag_name in group_tags] +
-      [object("fill", [fill])],
+    groupBy: [_converter("time", [group_time])] + 
+      [_converter("tag", [tag_name]) for tag_name in group_tags] +
+      [_converter("fill", [fill])],
 
     resultFormat: resultFormat,
   },
