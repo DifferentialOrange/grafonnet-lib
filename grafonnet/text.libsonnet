@@ -1,7 +1,8 @@
 {
   new(
     title='',
-    span=null,
+    heigth=null,
+    width=null,
     mode='markdown',
     content='',
     transparent=null,
@@ -11,7 +12,10 @@
     {
       [if transparent != null then 'transparent']: transparent,
       title: title,
-      [if span != null then 'span']: span,
+      gridPos: {
+        h: height,
+        w: width
+      },
       type: 'text',
       mode: mode,
       content: content,
