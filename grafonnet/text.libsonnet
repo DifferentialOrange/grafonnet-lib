@@ -1,7 +1,7 @@
 {
   new(
     title='',
-    heigth=null,
+    height=null,
     width=null,
     mode='markdown',
     content='',
