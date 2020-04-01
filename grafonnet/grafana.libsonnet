@@ -19,5 +19,4 @@
   elasticsearch:: import 'elasticsearch.libsonnet',
   heatmapPanel:: import 'heatmap_panel.libsonnet',
   gauge:: import 'gauge.libsonnet',
-  vonageStatusPanel:: import 'vonage-status-panel.libsonnet',
 }
