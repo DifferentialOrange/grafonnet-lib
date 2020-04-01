@@ -164,5 +164,32 @@
             "value": "ram_usage"
          }
       ]
+   },
+   "tagged_query_without_group_by_time": {
+      "groupBy": [ ],
+      "measurement": "ram",
+      "policy": "default",
+      "resultFormat": "time_series",
+      "select": [
+         [
+            {
+               "params": [
+                  "value"
+               ],
+               "type": "field"
+            },
+            {
+               "params": [ ],
+               "type": "mean"
+            }
+         ]
+      ],
+      "tags": [
+         {
+            "key": "metric_name",
+            "operator": "=",
+            "value": "ram_usage"
+         }
+      ]
    }
 }

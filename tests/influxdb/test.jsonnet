@@ -40,4 +40,9 @@ local influxdb = grafana.influxdb;
     group_tags=['host'],
     fill=0,
   ),
+  tagged_query_without_group_by_time: influxdb.target(
+    measurement='ram',
+    where=([influxdb.tag('metric_name', '=', 'ram_usage')]),
+    group_time=null
+  ),
 }
