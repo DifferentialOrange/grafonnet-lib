@@ -1,5 +1,6 @@
 {
   local it = self,
+
   /**
    * Return an InfluxDB query tag condition
    *
@@ -23,9 +24,9 @@
   },
 
   /**
-   * Return an InfluxDB converter (aggregation, selector etc.)
+   * Return an InfluxDB converter (aggregation, selector, etc.)
    *
-   * @param type Converter type (aggregation, selector, etc)
+   * @param type Converter type (aggregation, selector, etc.)
    * @param params List of converter params
    *
    * @return Query selected value converter
@@ -36,7 +37,7 @@
     params=[]
   ):: {
     type: type,
-    params: params
+    params: params,
   },
 
   /**
@@ -64,10 +65,10 @@
    * @param policy Tagged query 'From' policy
    * @param measurement Tagged query 'From' measurement
    * @param where List of 'Where' query tag conditions
-   * @param selections List of 'Select' field selections with their converters (aggregation etc.)
-   * @param group_time 'Group by' time condition
+   * @param selections List of 'Select' field selections with their converters (aggregation, selector, etc.)
+   * @param group_time 'Group by' time condition (if set to null, do not groups by time)
    * @param group_tags 'Group by' tags list
-   * @param fill 'Group by' missing values fill mode
+   * @param fill 'Group by' missing values fill mode (works only with 'Group by time()')
    *
    * @param resultFormat Format results as 'Time series' or 'Table'
    *
@@ -100,9 +101,13 @@
     [if measurement != null then 'measurement']: measurement,
     tags: where,
     select: selections,
-    groupBy: [it.converter("time", [group_time])] + 
-      [it.converter("tag", [tag_name]) for tag_name in group_tags] +
-      [it.converter("fill", [fill])],
+    groupBy:
+      if group_time != null then
+        [it.converter('time', [group_time])] +
+        [it.converter('tag', [tag_name]) for tag_name in group_tags] +
+        [it.converter('fill', [fill])]
+      else
+        [it.converter('tag', [tag_name]) for tag_name in group_tags],
 
     resultFormat: resultFormat,
   },
