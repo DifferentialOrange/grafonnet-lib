@@ -58,6 +58,7 @@
   hide(hide)::
     if hide == '' then 0 else if hide == 'label' then 1 else 2,
   current(current):: {
+    selected: true,
     [if current != null then 'text']: current,
     [if current != null then 'value']: if current == 'auto' then
       '$__auto_interval'
@@ -111,13 +112,20 @@
   )::
     {
       allValue: allValues,
-      current: {
-        value: current,
-        text: if current in valuelabels then valuelabels[current] else current,
-      },
-      options: std.map(
+      current: $.current(current),
+      options:
+      (if includeAll then
+        [{
+          selected: if (current == 'all') then true else false,
+          text: "All",
+          value: "$__all"
+        }]
+      else [])
+      + 
+      std.map(
         function(i)
           {
+            selected: if (i in valuelabels && valuelabels[i] == current) || (i == current) then true else false,
             text: if i in valuelabels then valuelabels[i] else i,
             value: i,
           }, std.split(query, ',')
@@ -130,5 +138,30 @@
       name: name,
       query: query,
       type: 'custom',
+    },
+
+  constant(
+    name,
+    label='',
+    hide='',
+    value=''
+  )::
+    {
+      name: name,
+      label: label,
+      hide: $.hide(hide),
+      current: {
+        selected: false,
+        value: value,
+        text: value,
+      },
+      query: value,
+      options: [{
+        selected: true,
+        value: value,
+        text: value,
+      }],
+      skipUrlSync: false,
+      type: 'constant',
     },
 }
