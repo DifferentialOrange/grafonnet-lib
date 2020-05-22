@@ -1,4 +1,7 @@
 {
+  /**
+   * @name row.new
+   */
   new(
     title='Row',
     #collapsed=false,

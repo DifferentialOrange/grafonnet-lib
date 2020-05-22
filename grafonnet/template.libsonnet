@@ -1,4 +1,7 @@
 {
+  /**
+   * @name template.new
+   */
   new(
     name,
     datasource,
@@ -34,6 +37,9 @@
       type: 'query',
       useTags: false,
     },
+  /**
+   * @name template.interval
+   */
   interval(
     name,
     query,
@@ -45,7 +51,7 @@
   )::
     {
       current: $.current(current),
-      hide: if hide == '' then 0 else if hide == 'label' then 1 else 2,
+      hide: $.hide(hide),
       label: label,
       name: name,
       query: std.join(',', std.filter($.filterAuto, std.split(query, ','))),
@@ -67,6 +73,9 @@
     else
       current,
   },
+  /**
+   * @name template.datasource
+   */
   datasource(
     name,
     query,
@@ -98,6 +107,9 @@
   else
     refresh,
   filterAuto(str):: str != 'auto',
+  /**
+   * @name template.custom
+   */
   custom(
     name,
     query,
@@ -139,7 +151,6 @@
       query: query,
       type: 'custom',
     },
-
   constant(
     name,
     label='',

@@ -1,4 +1,7 @@
 {
+  /**
+   * @name text.new
+   */
   new(
     title='',
     height=null,

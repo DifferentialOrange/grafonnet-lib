@@ -4,7 +4,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": true,
-      "datasource": "$PROMETHEUS",
+      "datasource": "default",
       "decimals": 2,
       "description": "description",
       "fill": 2,
@@ -19,12 +19,19 @@
          "min": true,
          "rightSide": true,
          "show": false,
+         "sideWidth": 200,
          "total": true,
          "values": true
       },
       "lines": false,
       "linewidth": 2,
-      "links": [ ],
+      "links": [
+         {
+            "targetBlank": true,
+            "title": "foolink",
+            "url": "https://example.com"
+         }
+      ],
       "minSpan": 9,
       "nullPointMode": "nullAsZero",
       "percentage": false,
@@ -50,7 +57,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "test",
+      "title": "Advanced",
       "tooltip": {
          "shared": false,
          "sort": 1,
@@ -115,6 +122,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -136,7 +144,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with alerts",
+      "title": "Alerts",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -203,6 +211,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -224,7 +233,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with alert conditions as an array",
+      "title": "Alerts With Multiple Conditions",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -276,6 +285,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -297,7 +307,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with colors",
+      "title": "Alias Colors",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -345,6 +355,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -366,7 +377,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "test",
+      "title": "Basic",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -414,6 +425,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -435,7 +447,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "series",
+      "title": "Graph Series",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -485,6 +497,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -506,7 +519,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "series",
+      "title": "Graph Series Custom Value",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -541,7 +554,7 @@
          }
       ]
    },
-   "legendSort": {
+   "links": {
       "aliasColors": { },
       "bars": false,
       "dashLength": 10,
@@ -549,21 +562,23 @@
       "datasource": null,
       "fill": 1,
       "legend": {
-         "alignAsTable": true,
+         "alignAsTable": false,
          "avg": false,
-         "current": true,
-         "max": true,
-         "min": true,
-         "rightSide": true,
+         "current": false,
+         "max": false,
+         "min": false,
+         "rightSide": false,
          "show": true,
-         "sort": "current",
-         "sortDesc": true,
+         "sideWidth": null,
          "total": false,
-         "values": true
+         "values": false
       },
       "lines": true,
       "linewidth": 1,
-      "links": [ ],
+      "links": [
+         "foolinks",
+         "barlinks"
+      ],
       "nullPointMode": "null",
       "percentage": false,
       "pointradius": 5,
@@ -579,7 +594,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with sorted legend",
+      "title": "with links",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -627,6 +642,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -657,7 +673,79 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with array of targets",
+      "title": "Multiple Targets",
+      "tooltip": {
+         "shared": true,
+         "sort": 0,
+         "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+         "buckets": null,
+         "mode": "time",
+         "name": null,
+         "show": true,
+         "values": [ ]
+      },
+      "yaxes": [
+         {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+         },
+         {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+         }
+      ]
+   },
+   "sortedLegend": {
+      "aliasColors": { },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "legend": {
+         "alignAsTable": true,
+         "avg": false,
+         "current": true,
+         "max": true,
+         "min": true,
+         "rightSide": true,
+         "show": true,
+         "sideWidth": null,
+         "sort": "current",
+         "sortDesc": true,
+         "total": false,
+         "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [ ],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "repeat": null,
+      "seriesOverrides": [ ],
+      "spaceLength": 10,
+      "span": 12,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [ ],
+      "thresholds": [ ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Sorted Legend",
       "tooltip": {
          "shared": true,
          "sort": 0,
@@ -705,6 +793,7 @@
          "min": false,
          "rightSide": false,
          "show": true,
+         "sideWidth": null,
          "total": false,
          "values": false
       },
@@ -735,7 +824,7 @@
       "thresholds": [ ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "with targets",
+      "title": "Targets",
       "tooltip": {
          "shared": true,
          "sort": 0,
