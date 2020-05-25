@@ -115,7 +115,6 @@
     transparent=false,
     value_type='individual',
     shared_tooltip=true,
-    staircase=false,
     percentage=false,
     time_from=null,
     time_shift=null,
