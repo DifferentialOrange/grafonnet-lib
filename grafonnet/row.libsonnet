@@ -8,6 +8,8 @@
    * @param title The title of the row.
    * @param showTitle (default `true` if title is set) Whether to show the row title
    * @paral titleSize (default `'h6'`) The size of the title
+   * @param gridHeight (optional) Height of the panel in Grafana grid units
+   * @param gridWidth (optional) Width of the panel in Grafana grid units (max: 24)
    * @param collapse (default `false`) The initial state of the row when opening the dashboard. Panels in a collapsed row are not load until the row is expanded.
    * @param repeat (optional) Name of variable that should be used to repeat this row. It is recommended to use the variable in the row title as well.
    *
@@ -17,6 +19,8 @@
   new(
     title='Dashboard Row',
     height=null,
+    gridHeight=1,
+    gridWidth=24,
     collapse=false,
     repeat=null,
     showTitle=null,
@@ -37,6 +41,10 @@
     title: title,
     type: 'row',
     titleSize: titleSize,
+    [if (gridHeight != null || gridWidth != null) then 'gridPos']: {
+      h: gridHeight,
+      w: gridWidth,
+    },
     addPanels(panels):: self {
       panels+: panels,
     },

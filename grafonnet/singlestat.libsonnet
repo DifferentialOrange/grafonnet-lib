@@ -12,6 +12,8 @@
    * @param datasource (optional)
    * @param span (optional)
    * @param min_span (optional)
+   * @param gridHeight (optional) Height of the panel in Grafana grid units
+   * @param gridWidth (optional) Width of the panel in Grafana grid units (max: 24)
    * @param decimals (optional)
    * @param valueName (default `'avg'`)
    * @param valueFontSize (default `'80%'`)
@@ -51,6 +53,8 @@
     description='',
     interval=null,
     height=null,
+    gridHeight=null,
+    gridWidth=null,
     datasource=null,
     span=null,
     min_span=null,
@@ -169,6 +173,10 @@
         show: sparklineShow,
       },
       tableColumn: tableColumn,
+      [if (gridHeight != null || gridWidth != null) then 'gridPos']: {
+        h: gridHeight,
+        w: gridWidth,
+      },
       _nextTarget:: 0,
       addTarget(target):: self {
         local nextTarget = super._nextTarget,

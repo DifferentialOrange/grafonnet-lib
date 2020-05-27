@@ -20,6 +20,8 @@
    * @param color_min (optional) The value for the beginning of the color range
    * @param color_mode (default `'spectrum'`) How to display difference in frequency with color
    * @param dataFormat (default `'timeseries'`) How to format the data
+   * @param gridHeight (optional) Height of the panel in Grafana grid units
+   * @param gridWidth (optional) Width of the panel in Grafana grid units (max: 24)
    * @param highlightCards (default `true`) TODO: document
    * @param hideZeroBuckets (default `false`) Whether or not to hide empty buckets, default is false
    * @param legend_show (default `false`) Show legend
@@ -60,6 +62,8 @@
     color_min=null,
     color_mode='spectrum',
     dataFormat='timeseries',
+    gridHeight=null,
+    gridWidth=null,
     highlightCards=true,
     hideZeroBuckets=false,
     legend_show=false,
@@ -135,6 +139,10 @@
     yBucketBound: yBucketBound,
     [if dataFormat == 'timeseries' then 'yBucketNumber']: yBucketNumber,
     [if dataFormat == 'timeseries' then 'yBucketSize']: yBucketSize,
+    [if (gridHeight != null || gridWidth != null) then 'gridPos']: {
+      h: gridHeight,
+      w: gridWidth,
+    },
 
     _nextTarget:: 0,
     addTarget(target):: self {

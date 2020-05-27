@@ -105,6 +105,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "height": "125px",
          "panels": [
             {
@@ -431,6 +435,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "height": "250px",
          "panels": [
             {
@@ -645,6 +653,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "height": "250px",
          "panels": [
             {
@@ -760,6 +772,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "height": "250px",
          "panels": [
             {
@@ -944,6 +960,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "height": "250px",
          "panels": [
             {

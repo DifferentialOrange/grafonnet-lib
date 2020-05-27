@@ -16,6 +16,10 @@
       {
          "collapse": false,
          "collapsed": false,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "panels": [
             {
                "cacheTimeout": null,
@@ -366,6 +370,10 @@
       {
          "collapse": true,
          "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "panels": [
             {
                "cacheTimeout": null,
@@ -1060,6 +1068,10 @@
       {
          "collapse": true,
          "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "panels": [
             {
                "cacheTimeout": null,
@@ -1332,6 +1344,10 @@
       {
          "collapse": true,
          "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "panels": [
             {
                "cacheTimeout": null,
@@ -1735,6 +1751,10 @@
       {
          "collapse": true,
          "collapsed": true,
+         "gridPos": {
+            "h": 1,
+            "w": 24
+         },
          "panels": [
             {
                "cacheTimeout": null,
