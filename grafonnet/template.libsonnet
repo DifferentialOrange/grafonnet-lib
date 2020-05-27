@@ -64,7 +64,6 @@
   hide(hide)::
     if hide == '' then 0 else if hide == 'label' then 1 else 2,
   current(current):: {
-    selected: true,
     [if current != null then 'text']: current,
     [if current != null then 'value']: if current == 'auto' then
       '$__auto_interval'
@@ -124,24 +123,33 @@
   )::
     {
       allValue: allValues,
-      current: $.current(current),
+      current:
+        if current == 'all' then {
+          selected: true,
+          text: 'All',
+          value: '$__all',
+        } else {
+          selected: true,
+          value: current,
+          text: if current in valuelabels then valuelabels[current] else current,
+        },
       options:
-      (if includeAll then
-        [{
-          selected: if (current == 'all') then true else false,
-          text: "All",
-          value: "$__all"
-        }]
-      else [])
-      + 
-      std.map(
-        function(i)
-          {
-            selected: if (i in valuelabels && valuelabels[i] == current) || (i == current) then true else false,
-            text: if i in valuelabels then valuelabels[i] else i,
-            value: i,
-          }, std.split(query, ',')
-      ),
+        (if includeAll then
+           [{
+             selected: if (current == 'all') then true else false,
+             text: 'All',
+             value: '$__all',
+           }]
+         else [])
+        +
+        std.map(
+          function(i)
+            {
+              selected: if (i in valuelabels && valuelabels[i] == current) || (i == current) then true else false,
+              text: if i in valuelabels then valuelabels[i] else i,
+              value: i,
+            }, std.split(query, ',')
+        ),
       hide: $.hide(hide),
       includeAll: includeAll,
       label: label,
@@ -151,28 +159,47 @@
       query: query,
       type: 'custom',
     },
+  /**
+   * @name template.text
+   */
+  text(
+    name,
+    label=''
+  )::
+    {
+      current: {
+        selected: false,
+        text: '',
+        value: '',
+      },
+      name: name,
+      label: label,
+      query: '',
+      type: 'textbox',
+    },
+  /**
+   * @name template.constant
+   */
   constant(
     name,
     label='',
+    value='',
     hide='',
-    value=''
   )::
     {
-      name: name,
-      label: label,
-      hide: $.hide(hide),
-      current: {
-        selected: false,
+      current: [{
+        selected: true,
         value: value,
         text: value,
-      },
-      query: value,
+      }],
       options: [{
         selected: true,
         value: value,
         text: value,
       }],
-      skipUrlSync: false,
+      hide: $.hide(hide),
+      label: label,
+      name: name,
       type: 'constant',
     },
 }
